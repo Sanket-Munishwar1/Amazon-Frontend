@@ -1,6 +1,5 @@
 import React from "react";
 import { useStateValue } from "../StateProvider";
-import styled from "styled-components";
 import Navbar from "./Navbar";
 import CurrencyFormat from "react-currency-format";
 import { getBasketTotal } from "../reducer";
@@ -18,51 +17,56 @@ function Checkout(){
         });
     };
     return(
-        <Container>
-            <Navbar />
-            <Main>
-                <ShoppingCart>
-                    <h2>Shopping Cart</h2>
-                    {basket?.map((product) => (
-                        <Product>
-                            <Image>
-                                <img src={product.image} alt="" />
-                            </Image>
-                            <Description>
-                                <h4>{product.title}</h4>
+      <section style={styles.section}>
+      <Navbar />
 
-                                <p>₹ {product.price}</p>
+      <div className="main" style={styles.main}>
+        <div className="shoppingcart" style={styles.shoppingcart}>
+          <h2 style={styles.shoppingcarth2}>Shopping Cart</h2>
 
-                                <button onClick={(e) => removeFromBasket(e, product.id)} >
-                                Remove
-                                </button>
-                            </Description>
-                        </Product>
-                    ))}
-                </ShoppingCart>
-                <Subtotal>
-                    <CurrencyFormat 
-                        renderText={(value) => (
-                            <>
-                                <p>Subtotal( {basket.length} items )
-                                    :<strong>{value}</strong>
-                                </p>
-                                <small>
-                                    <input type="checkbox" />
-                                    <span>This order contains a gift.</span>
-                                </small>
-                            </>
-                        )}
-                        decimalScale={2}
-                        value={ getBasketTotal(basket)}
-                        displayType="text"
-                        thousandSeparator={true}
-                        prefix={"₹ "}
-                    />
-                    <button onClick={() => navigate("/address")}>Proceed to Checkout</button>
-                </Subtotal>
-            </Main>
-        </Container>
+          {basket?.map((product) => (
+            <div style={styles.product} className="product">
+              <div style={styles.image} className="image">
+                <img style={styles.imageimg} src={product.image} alt="" />
+              </div>
+              <div style={styles.description} className="description">
+                <h4 style={styles.descriptionh4}>{product.title}</h4>
+
+                <p style={styles.descriptionp}>₹ {product.price}</p>
+
+                <button style={styles.descriptionbutton} onClick={(e) => removeFromBasket(e, product.id)}>
+                  Remove
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style={styles.subtotal} className="subtotal">
+          <CurrencyFormat 
+            renderText={(value) => (
+              <>
+                <p style={styles.subtotalp}>
+                  Subtotal ( {basket.length} items ) : <strong> {value}</strong>
+                </p>
+                <small style={styles.subtotalsmall}>
+                  <input type="checkbox" />
+                  <span style={styles.subtotalspan}>This order contains a gift.</span>
+                </small>
+              </>
+            )}
+            decimalScale={2}
+            value={getBasketTotal(basket)}
+            displayType="text"
+            thousandSeparator={true}
+            prefix={"₹ "}
+          />
+
+          <button style={styles.subtotalbutton} onClick={() => navigate("/address")}>
+            Proceed to Checkout
+          </button>
+        </div>
+      </div>
+    </section>
     )
 }
 
@@ -70,113 +74,98 @@ function Checkout(){
 
 
 
-const Container = styled.div`
-  width: 100%;
-  max-width: 1400px;
-  height: fit-content;
-  margin: auto;
-  background-color: rgb(234, 237, 237);
-  border: 1px solid red;
-  position: relative;
-`;
-const Main = styled.div`
-  display: flex;
-  padding: 15px;
-
-  @media only screen and (max-width: 1200px) {
-    flex-direction: column;
-  }
-`;
-const ShoppingCart = styled.div`
-  padding: 15px;
-  background-color: #fff;
-  flex: 0.7;
-
-  @media only screen and (max-width: 1200px) {
-    flex: none;
-  }
-
-  h2 {
-    font-weight: 500;
-    border-bottom: 1px solid lightgray;
-    padding-bottom: 15px;
-  }
-`;
-const Subtotal = styled.div`
-  flex: 0.3;
-  background-color: #fff;
-  margin-left: 15px;
-  height: 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  @media only screen and (max-width: 1200px) {
-    flex: none;
-    margin-top: 20px;
-  }
-  p {
-    font-size: 20px;
-  }
-
-  small {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-
-    span {
-      margin-left: 10px;
-    }
-  }
-
-  button {
-    width: 65%;
-    height: 33px;
-    margin-top: 20px;
-    background-color: #ffd814;
-    border: none;
-    outline: none;
-
-    border-radius: 8px;
-  }
-`;
-
-const Product = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const Image = styled.div`
-  flex: 0.3;
-  img {
-    width: 100%;
-  }
-`;
-const Description = styled.div`
-  flex: 0.7;
-
-  h4 {
-    font-weight: 600;
-    font-size: 18px;
-  }
-
-  p {
-    font-weight: 600;
-    margin-top: 10px;
-  }
-
-  button {
-    background-color: transparent;
-    color: #1384b4;
-    border: none;
-    outline: none;
-    margin-top: 10px;
-    cursor: pointer;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-`;
+const styles={
+  section:{
+    width: "100%",
+    maxWidth: "1400px",
+    height: "fit-content",
+    margin: "auto",
+    backgroundColor: "rgb(234, 237, 237)",
+    border: "1px solid red",
+    position: "relative",
+    // paddingTop:"100px",
+  },
+  main:{
+    display: "flex",
+    padding: "15px",
+    marginTop:"20px"
+  },
+  // @mediaonlyscreenand(max-width: 1200px): {
+  //   flex-direction: "column"
+  // },
+  shoppingcart:{
+    padding: "15px",
+    backgroundColor: "#fff",
+    flex: "0.7",
+    display:"flex",
+    marginBottom:"50rem"
+  },
+  shoppingcarth2:{
+    fontWeight: "500",
+    borderBottom: "1px solid lightgray",
+    paddingBottom: "15px"
+  },
+  subtotal:{
+    flex: "0.3",
+    backgroundColor: "#fff",
+    marginLeft: "15px",
+    height: "200px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom:"50rem"
+  },
+  subtotalp:{
+    fontSize: "20px"
+  },
+  subtotalsmall:{
+    display: "flex",
+    alignItems: "center",
+    marginTop: "10px",
+  },
+  subtotalspan:{
+    marginLeft: "10px"
+  },
+  subtotalbutton:{
+    width: "65%",
+    height: "33px",
+    marginTop: "20px",
+    backgroundColor: "#ffd814",
+    border: "none",
+    outline: "none",
+    borderRadius: "8px"
+  },
+  product:{
+    display: "flex",
+    alignItems: "center"
+  },
+  image:{
+    flex: "0.3"
+  },
+  imageimg:{
+    width: "100%"
+  },
+  description:{
+    flex: "0.7"
+  },
+  descriptionh4:{
+    fontWeight: "600",
+    fontSize: "18px",
+  },
+  descriptionp:{
+    fontWeight: "600",
+    marginTop: "10px"
+  },
+  descriptionbutton:{
+    backgroundColor: "transparent",
+    color: "#1384b4",
+    border: "none",
+    outline: "none",
+    marginTop: "10px",
+    cursor: "pointer",
+    textDecoration: "underline"
+  },
+}
 
 export default Checkout

@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components';
 import { Rating } from '@material-ui/lab';
 import { useStateValue } from '../StateProvider';
 
@@ -22,67 +21,70 @@ function Card({ id, image,title,price,rating})  {
         });
     }
   return (
-    <Container>
-      <Image>
-        <img src={image} alt="" />
-      </Image>
-      <Description>
-        <h5>{title}</h5>
-      <Rating name="half-rating-read" defaultValue={rating} precision={0.5} readOnly />
-      <p>{price}</p>
-      <button onClick={addToBasket}>Add to Cart</button>
-      </Description>
-    </Container>
+    <section style={styles.section}>
+    <div className="image" style={styles.image}>
+      <img src={image} alt="" style={styles.imageimg} />
+    </div>
+    <div className="description" style={styles.description}>
+      <h5 style={styles.descriptionh5}>{title}</h5>
+      <Rating
+        name="text-feedback"
+        value={rating}
+        readOnly
+        precision={0.5}
+      />
+      <p style={styles.descriptionp}>₹ {price}</p>
+
+      <button style={styles.descriptionbutton} onClick={addToBasket}>Add to Cart</button>
+    </div>
+  </section>
   )
 }
-const Container = styled.div`
-  width: 100%;
-  height: 100%;
-
-  display: flex;
-  flex-direction: column;
-  background-color: #fff;
-  z-index: 10;
-`;
-const Image = styled.div`
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
-
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-  flex: 0.3;
-  img {
-    width: 180px;
-    height: 200px;
+const styles = {
+  section:{
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    backgroundColor: "#fff",
+    zIndex: "10",
+  },
+  image:{
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: "20px",
+    flex:" 0.3",
+  },
+  imageimg:{
+    width: "180px",
+    height: "200px"
+  },
+  description:{
+    width: "90%",
+    margin: "auto",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-evenly",
+    flex:" 0.7"
+  },
+  descriptionh5:{
+    fontSize:"16px",
+    fontWeight:"600"
+  },
+  descriptionp:{
+    fontWeight:"600"
+  },
+  descriptionbutton:{
+    width:"100%",
+    height:"33px",
+    backgroundColor:"#fa8900",
+    border:"none",
+    borderRadius:"10px",
+    cursor:"pointer"
   }
-`;
-const Description = styled.div`
-  width: 90%;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  flex: 0.7;
+}
 
-  h5 {
-    font-size: 16px;
-    font-weight: 600;
-  }
-
-  p {
-    font-weight: 600;
-  }
-
-  button {
-    width: 100%;
-    height: 33px;
-    background-color: #fa8900;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-`;
 export default Card

@@ -1,6 +1,5 @@
 import axios from '../axios';
 import React, { useState } from 'react'
-import styled from 'styled-components'
 
 
 
@@ -28,126 +27,121 @@ function AddProduct(){
     };
 
     return (
-        <Container>
-            <Logo>
-                <img src="./amazon_logo.png" alt="" />
-            </Logo>
+        <section style={styles.section}>
+      <div className="logo" style={styles.logo}>
+        <img style={styles.logoimg} src="./amazon_logo.png" alt="" />
+      </div>
 
-            <FormContainer>
-                <h3>Add Product</h3>
+      <div className="formcontainer" style={styles.formcontainer}>
+        <h3 style={styles.formcontainerh3}>Add Product</h3 >
 
-                <InputContainer>
-                <p>Title</p>
-                <input
-                    type="text"
-                    onChange={(e) => setTitle(e.target.value)}
-                    value={title}
-                />
-                </InputContainer>
-                <InputContainer>
-                <p>ImageURL</p>
-                <input
-                    type="text"
-                    onChange={(e) => setImageURL(e.target.value)}
-                    value={imageURL}
-                />
-                </InputContainer>
-                <InputContainer>
-                <p>Price</p>
-                <input
-                    type="number"
-                    onChange={(e) => setPrice(e.target.value)}
-                    value={price}
-                />
-                </InputContainer>
-                <InputContainer>
-                <p>Rating</p>
-                <input
-                    type="number"
-                    onChange={(e) => setRating(e.target.value)}
-                    value={rating}
-                />
-                </InputContainer>
+        <div className="inputcontainer" style={styles.formcontainerinputcontainer}>
+          <p style={styles.formcontainerinputcontainerp}>Title</p>
+          <input style={styles.formcontainerinputcontainerinput}
+            type="text"
+            onChange={(e) => setTitle(e.target.value)}
+            value={title}
+          />
+        </div>
+        <div className="inputcontainer" style={styles.formcontainerinputcontainer}>
+          <p style={styles.formcontainerinputcontainerp}>ImageURL</p>
+          <input  style={styles.formcontainerinputcontainerinput}
+            type="text"
+            onChange={(e) => setImageURL(e.target.value)}
+            value={imageURL}
+          />
+        </div>
+        <div className="inputcontainer" style={styles.formcontainerinputcontainer}>
+          <p style={styles.formcontainerinputcontainerp}>Price</p>
+          <input style={styles.formcontainerinputcontainerinput}
+            type="number"
+            onChange={(e) => setPrice(e.target.value)}
+            value={price}
+          />
+        </div>
+        <div className="inputcontainer" style={styles.formcontainerinputcontainer}>
+          <p style={styles.formcontainerinputcontainerp}>Rating</p>
+          <input style={styles.formcontainerinputcontainerinput}
+            type="number"
+            onChange={(e) => setRating(e.target.value)}
+            value={rating}
+          />
+        </div>
 
-                <Button onClick={addProduct} >Add Product</Button>
-            </FormContainer>
-    </Container>
+        <button onClick={addProduct} style={styles.button}>Add Product</button>
+      </div>
+    </section>
     )
 }
 
 
 
-const Container = styled.div`
-  width: 40%;
-  min-width: 450px;
-  height: fit-content;
-  padding: 15px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const Logo = styled.div`
-  width: 120px;
-  margin-bottom: 20px;
-  img {
-    width: 100%;
-  }
-`;
-
-const FormContainer = styled.form`
-  border: 1px solid lightgray;
-  width: 55%;
-  height: fit-content;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 15px;
-
-  h3 {
-    font-size: 28px;
-    font-weight: 400;
-    line-height: 33px;
-    align-self: flex-start;
-
-    margin-bottom: 10px;
-  }
-`;
-
-const InputContainer = styled.div`
-  width: 100%;
-  padding: 10px;
-
-  p {
-    font-size: 14px;
-    font-weight: 600;
-  }
-
-  input {
-    width: 95%;
-    height: 33px;
-    padding-left: 5px;
-    border-radius: 5px;
-    border: 1px solid lightgray;
-    margin-top: 5px;
-
-    &:hover {
-      border: 1px solid orange;
+const styles ={
+    section:{
+      width: "40%",
+      minWidth: "450px",
+      height: "fit-content",
+      padding: "15px",
+      margin: "auto",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+    },
+    logo:{
+      width: "120px",
+      marginBottom: "20px"
+    },
+    logoimg:{
+      width: "100%"
+    },
+    formcontainer :{
+      border: "1px solid lightgray",
+      width: "55%",
+      height: "fit-content",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: "15px",
+  
+    },
+    formcontainerh3:{
+      fontSize: "28px",
+      fontWeight: "400",
+      lineHeight: "33px",
+      alignSelf: "flex-start",
+  
+      marginBottom: "10px",
+    },
+    formcontainerinputcontainer:{
+      width: "100%",
+      padding: "10px",
+    },
+    formcontainerinputcontainerp:{
+      fontSize: "14px",
+      fontWeight: "600",
+    },
+    formcontainerinputcontainerinput:{
+      width: "95%",
+      height: "33px",
+      paddingLeft: "5px",
+      borderRadius: "5px",
+      border: "1px solid lightgray",
+      marginTop: "5px",
+      hover:{
+        border:"1px solid orange"
+      }
+      
+    },
+    button:{
+      width: "70%",
+      height: "35px",
+      backgroundColor: "#f3b414",
+      border: "none",
+      outline: "none",
+      borderRadius: "10px",
+      marginTop: "30px",
     }
-  }
-`;
-
-const Button = styled.button`
-  width: 70%;
-  height: 35px;
-  background-color: #f3b414;
-  border: none;
-  outline: none;
-  border-radius: 10px;
-  margin-top: 30px;
-`;
-
-
+  
+} 
 export default AddProduct

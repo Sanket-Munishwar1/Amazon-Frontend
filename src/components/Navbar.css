@@ -1,0 +1,132 @@
+section{
+    width: 100%;
+    height: 60px;
+    background-color: #131921;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  .inner{
+      width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .inner .logo{
+      margin-left: 20px;
+    cursor: pointer;
+  }
+  .inner .logo img{
+      width: 100px;
+      margin-top: 10px;
+  }
+  .inner .searchbar{
+      height: 35px;
+    flex: 1;
+    margin: 0px 15px;
+    display: flex;
+    align-items: center;
+  }
+  .inner .searchbar input{
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 5px 0px 0px 5px;
+      &::placeholder {
+          padding-left: 5px;
+      }
+  }
+  .mobilesearchbar{
+      height: 35px;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+  }
+  .mobilesearchbar input {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 5px 0px 0px 5px;
+  
+      &::placeholder {
+        padding-left: 10px;
+      }
+  }
+  .searchicon{
+      background-color: #febd69;
+    height: 100%;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    border-radius: 0px 5px 5px 0px;
+  }
+  
+  .searchicon img {
+      width: 22px;
+  }
+  .inner .right{
+      display: flex;
+      align-items: center;
+      width: fit-content;
+      justify-content: space-around;
+      height: 100%;
+      padding: 5px 15px;
+  }
+  .inner .right .navbutton{
+      color: #fff;
+      padding: 5px;
+      height: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      cursor: pointer;
+      margin-right: 15px;
+  }
+  
+  .inner .right .navbutton p {
+      &:nth-child(1) {
+        font-size: 12px;
+      }
+  
+      &:nth-child(2) {
+        font-size: 14px;
+        font-weight: 600;
+      }
+  }
+  .inner .basketbutton{
+      display: flex;
+    align-items: center;
+    height: 90%;
+    cursor: pointer;
+  }
+  
+  .inner .basketbutton img {
+      width: 30px;
+      margin-right: 10px;
+  }
+  
+  .inner .basketbutton p {
+      color: #fff;
+      font-weight: 500;
+  }
+  
+  @media only screen and (min-width: 768px){
+      section{
+          height: 120px;
+          flex-direction: column;
+      }
+      .inner{
+          justify-content: space-between;
+      }
+      .searchbar{
+          display: none;
+      }
+      .mobilesearchbar{
+          display: none;
+      }
+  } 
+  
